@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('clone') {
       steps {
-        git 'https://github.com/scmlearning/mavenproject'
+        git 'https://github.com/avinash0524/mavenpro.git'
       }
     
     }
