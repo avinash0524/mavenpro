@@ -1,11 +1,32 @@
 pipeline {
   agent any
   stages {
-    stage('') {
+    stage('clone') {
       steps {
-        build 'Build'
+        git 'https://github.com/scmlearning/mavenproject'
       }
+    
     }
-
+    stage('Build') {
+steps{
+    sh 'mvn clean package install'
+}
   }
+  stage('test') {
+      steps{
+          sh 'mvn test'
+      }
+  }
+  stage('sonar') {
+      steps{
+          sh ''
+      }
+  }
+  post{
+        success {
+            junit '**/target/surefire-reports/TEST-*.xml'
+        }
+  
+  }
+}
 }
